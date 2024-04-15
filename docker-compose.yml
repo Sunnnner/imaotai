@@ -1,0 +1,89 @@
+version : '3.9'
+
+networks:
+  campus_net:
+    driver: bridge
+    
+services:
+  campus-mysql:
+    container_name: campus-mysql
+    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: mysql-dockerfile
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/logs:/logs
+      - ./mysql/data:/var/lib/mysql
+    command: [
+          'mysqld',
+          '--innodb-buffer-pool-size=80M',
+          '--character-set-server=utf8mb4',
+          '--collation-server=utf8mb4_unicode_ci',
+          '--default-time-zone=+8:00',
+          '--lower-case-table-names=1'
+        ]
+    environment:
+      WAIT_HOSTS: campus-mysql:3306
+      MYSQL_DATABASE: 'campus_imaotai'
+      MYSQL_ROOT_PASSWORD: 123456789
+    networks:
+      - campus_net
+    #platform: linux/x86_64
+  campus-redis:
+    container_name: campus-redis
+    image: redis
+    build:
+      context: .
+      dockerfile: redis-dockerfile
+    ports:
+      - "16379:6379"
+    volumes:
+      - ./conf/redis.conf:/home/campus/redis/redis.conf
+      - ./redis/data:/data
+    command: redis-server /home/campus/redis/redis.conf
+    networks:
+      - campus_net
+  campus-nginx:
+    container_name: campus-nginx
+    image: nginx
+    build:
+      context: .
+      dockerfile: nginx-dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./html/dist:/home/campus/projects/campus-ui
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - campus-server
+    networks:
+      - campus_net
+    # links:
+      # - campus-server
+  campus-server:
+    container_name: campus-server
+    build:
+      context: .
+      dockerfile: campus-dockerfile
+    ports:
+      - "8160:8160"
+    volumes:
+      - ./campus/logs:/home/campus/logs
+      - ./campus/uploadPath:/home/campus/uploadPath
+      - ./campus/conf:/home/campus/conf
+    depends_on:
+      - campus-mysql
+      - campus-redis
+    # links:
+      # - campus-mysql
+      # - campus-redis
+    environment:
+      TZ: Asia/Shanghai
+      spring.config.additional-location: /home/campus/conf/application-prod.yml
+    networks:
+      - campus_net

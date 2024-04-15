@@ -1,0 +1,184 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel=icon href=/favicon.ico><title>campus</title><!--[if lt IE 11]><script>window.location.href='/html/ie.html';</script><![endif]--><style>html,
+    body,
+    #app {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    .chromeframe {
+      margin: 0.2em 0;
+      background: #ccc;
+      color: #000;
+      padding: 0.2em 0;
+    }
+
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999999;
+    }
+
+    #loader {
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #FFF;
+      -webkit-animation: spin 2s linear infinite;
+      -ms-animation: spin 2s linear infinite;
+      -moz-animation: spin 2s linear infinite;
+      -o-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      z-index: 1001;
+    }
+
+    #loader:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #FFF;
+      -webkit-animation: spin 3s linear infinite;
+      -moz-animation: spin 3s linear infinite;
+      -o-animation: spin 3s linear infinite;
+      -ms-animation: spin 3s linear infinite;
+      animation: spin 3s linear infinite;
+    }
+
+    #loader:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #FFF;
+      -moz-animation: spin 1.5s linear infinite;
+      -o-animation: spin 1.5s linear infinite;
+      -ms-animation: spin 1.5s linear infinite;
+      -webkit-animation: spin 1.5s linear infinite;
+      animation: spin 1.5s linear infinite;
+    }
+
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+
+    #loader-wrapper .loader-section {
+      position: fixed;
+      top: 0;
+      width: 51%;
+      height: 100%;
+      background: #7171C6;
+      z-index: 1000;
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    #loader-wrapper .loader-section.section-left {
+      left: 0;
+    }
+
+    #loader-wrapper .loader-section.section-right {
+      right: 0;
+    }
+
+
+    .loaded #loader-wrapper .loader-section.section-left {
+      -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      transform: translateX(-100%);
+      -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    }
+
+    .loaded #loader-wrapper .loader-section.section-right {
+      -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      transform: translateX(100%);
+      -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    }
+
+    .loaded #loader {
+      opacity: 0;
+      -webkit-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+    }
+
+    .loaded #loader-wrapper {
+      visibility: hidden;
+      -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+      transform: translateY(-100%);
+      -webkit-transition: all 0.3s 1s ease-out;
+      transition: all 0.3s 1s ease-out;
+    }
+
+    .no-js #loader-wrapper {
+      display: none;
+    }
+
+    .no-js h1 {
+      color: #222222;
+    }
+
+    #loader-wrapper .load_title {
+      font-family: 'Open Sans';
+      color: #FFF;
+      font-size: 19px;
+      width: 100%;
+      text-align: center;
+      z-index: 9999999999999;
+      position: absolute;
+      top: 60%;
+      opacity: 1;
+      line-height: 30px;
+    }
+
+    #loader-wrapper .load_title span {
+      font-weight: normal;
+      font-style: italic;
+      font-size: 13px;
+      color: #FFF;
+      opacity: 0.5;
+    }</style><link href=/static/css/chunk-libs.ea078ece.css rel=stylesheet><link href=/static/css/app.e30d71d2.css rel=stylesheet></head><body><div id=app><div id=loader-wrapper><div id=loader></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div><div class=load_title>正在加载系统资源，请耐心等待</div></div></div><script>(function(e){function c(c){for(var u,a,t=c[0],h=c[1],r=c[2],k=0,b=[];k<t.length;k++)a=t[k],Object.prototype.hasOwnProperty.call(d,a)&&d[a]&&b.push(d[a][0]),d[a]=0;for(u in h)Object.prototype.hasOwnProperty.call(h,u)&&(e[u]=h[u]);o&&o(c);while(b.length)b.shift()();return f.push.apply(f,r||[]),n()}function n(){for(var e,c=0;c<f.length;c++){for(var n=f[c],u=!0,a=1;a<n.length;a++){var t=n[a];0!==d[t]&&(u=!1)}u&&(f.splice(c--,1),e=h(h.s=n[0]))}return e}var u={},a={runtime:0},d={runtime:0},f=[];function t(e){return h.p+"static/js/"+({}[e]||e)+"."+{"chunk-005cb0c7":"7899dac9","chunk-04621586":"1c40f0c1","chunk-20453d27":"f427d475","chunk-2727631f":"ee085bd4","chunk-2d0a3b04":"fbd2cef5","chunk-2d0a4248":"5b05be0f","chunk-2d0a5133":"0c5fac0b","chunk-2d0b1626":"bc685324","chunk-2d0b2b28":"9e271da6","chunk-c0e2d87a":"f876b2d6","chunk-2d0cb6e8":"31f2dfd2","chunk-2d0da2ea":"770a50d8","chunk-2d0e2366":"00afd6b9","chunk-7d378af4":"6e463b63","chunk-a0fb3e3e":"e921473e","chunk-2d0f012d":"ddeb06bb","chunk-2d21a3bb":"b78e776d","chunk-2d22252c":"da0e6014","chunk-2d230898":"8e57f1ea","chunk-39413ce8":"066841a0","chunk-3a08d90c":"e75a49e1","chunk-3b69bc00":"cbe12918","chunk-3c64afac":"c4f933ba","chunk-3dee891e":"3e0c8ef7","chunk-46f2cf5c":"db8e71f6","chunk-4f55a4ac":"911d10ab","chunk-582b2a7a":"09ed5afd","chunk-5b83c289":"ea45c840","chunk-7fa21b9b":"09e1d49b","chunk-5bb73842":"df36830b","chunk-2d0de3b1":"43b73dd2","chunk-4aebf114":"ad39a178","chunk-59b6a8ac":"de036e97","chunk-ffe7b3aa":"482c6d78","chunk-3f93175c":"f9ebd73a","chunk-61408335":"226e18c7","chunk-68702101":"23cd449f","chunk-6b080cae":"87696a88","chunk-6c87f9a9":"4f370892","chunk-8579d4da":"7db24947","chunk-8ee3fc10":"561644b9","chunk-d19c1a98":"5943f8fa","chunk-e369edc4":"27847bd8","chunk-e648d5fe":"66a1f94e","chunk-e946381e":"514d643e","chunk-fbe5e8b2":"92bdbc53","chunk-17b3a1ca":"5b4724f6","chunk-51a7a55a":"79407489","chunk-69440159":"f4f9eb7c","chunk-89ecf426":"1f7e44a7","chunk-9b2d5786":"8e6a44b0"}[e]+".js"}function h(c){if(u[c])return u[c].exports;var n=u[c]={i:c,l:!1,exports:{}};return e[c].call(n.exports,n,n.exports,h),n.l=!0,n.exports}h.e=function(e){var c=[],n={"chunk-20453d27":1,"chunk-c0e2d87a":1,"chunk-7d378af4":1,"chunk-a0fb3e3e":1,"chunk-3c64afac":1,"chunk-3dee891e":1,"chunk-46f2cf5c":1,"chunk-4f55a4ac":1,"chunk-5b83c289":1,"chunk-5bb73842":1,"chunk-59b6a8ac":1,"chunk-61408335":1,"chunk-6b080cae":1,"chunk-e648d5fe":1,"chunk-51a7a55a":1};a[e]?c.push(a[e]):0!==a[e]&&n[e]&&c.push(a[e]=new Promise((function(c,n){for(var u="static/css/"+({}[e]||e)+"."+{"chunk-005cb0c7":"31d6cfe0","chunk-04621586":"31d6cfe0","chunk-20453d27":"6aaae497","chunk-2727631f":"31d6cfe0","chunk-2d0a3b04":"31d6cfe0","chunk-2d0a4248":"31d6cfe0","chunk-2d0a5133":"31d6cfe0","chunk-2d0b1626":"31d6cfe0","chunk-2d0b2b28":"31d6cfe0","chunk-c0e2d87a":"a9a6cb50","chunk-2d0cb6e8":"31d6cfe0","chunk-2d0da2ea":"31d6cfe0","chunk-2d0e2366":"31d6cfe0","chunk-7d378af4":"c621826b","chunk-a0fb3e3e":"c621826b","chunk-2d0f012d":"31d6cfe0","chunk-2d21a3bb":"31d6cfe0","chunk-2d22252c":"31d6cfe0","chunk-2d230898":"31d6cfe0","chunk-39413ce8":"31d6cfe0","chunk-3a08d90c":"31d6cfe0","chunk-3b69bc00":"31d6cfe0","chunk-3c64afac":"4e8637e7","chunk-3dee891e":"d7da9b7a","chunk-46f2cf5c":"17fbdb6b","chunk-4f55a4ac":"5a402cd2","chunk-582b2a7a":"31d6cfe0","chunk-5b83c289":"ce2a2394","chunk-7fa21b9b":"31d6cfe0","chunk-5bb73842":"84f98409","chunk-2d0de3b1":"31d6cfe0","chunk-4aebf114":"31d6cfe0","chunk-59b6a8ac":"793cbdf1","chunk-ffe7b3aa":"31d6cfe0","chunk-3f93175c":"31d6cfe0","chunk-61408335":"a00b75fd","chunk-68702101":"31d6cfe0","chunk-6b080cae":"579051f2","chunk-6c87f9a9":"31d6cfe0","chunk-8579d4da":"31d6cfe0","chunk-8ee3fc10":"31d6cfe0","chunk-d19c1a98":"31d6cfe0","chunk-e369edc4":"31d6cfe0","chunk-e648d5fe":"bbc9fa95","chunk-e946381e":"31d6cfe0","chunk-fbe5e8b2":"31d6cfe0","chunk-17b3a1ca":"31d6cfe0","chunk-51a7a55a":"74496202","chunk-69440159":"31d6cfe0","chunk-89ecf426":"31d6cfe0","chunk-9b2d5786":"31d6cfe0"}[e]+".css",d=h.p+u,f=document.getElementsByTagName("link"),t=0;t<f.length;t++){var r=f[t],k=r.getAttribute("data-href")||r.getAttribute("href");if("stylesheet"===r.rel&&(k===u||k===d))return c()}var b=document.getElementsByTagName("style");for(t=0;t<b.length;t++){r=b[t],k=r.getAttribute("data-href");if(k===u||k===d)return c()}var o=document.createElement("link");o.rel="stylesheet",o.type="text/css",o.onload=c,o.onerror=function(c){var u=c&&c.target&&c.target.src||d,f=new Error("Loading CSS chunk "+e+" failed.\n("+u+")");f.code="CSS_CHUNK_LOAD_FAILED",f.request=u,delete a[e],o.parentNode.removeChild(o),n(f)},o.href=d;var i=document.getElementsByTagName("head")[0];i.appendChild(o)})).then((function(){a[e]=0})));var u=d[e];if(0!==u)if(u)c.push(u[2]);else{var f=new Promise((function(c,n){u=d[e]=[c,n]}));c.push(u[2]=f);var r,k=document.createElement("script");k.charset="utf-8",k.timeout=120,h.nc&&k.setAttribute("nonce",h.nc),k.src=t(e);var b=new Error;r=function(c){k.onerror=k.onload=null,clearTimeout(o);var n=d[e];if(0!==n){if(n){var u=c&&("load"===c.type?"missing":c.type),a=c&&c.target&&c.target.src;b.message="Loading chunk "+e+" failed.\n("+u+": "+a+")",b.name="ChunkLoadError",b.type=u,b.request=a,n[1](b)}d[e]=void 0}};var o=setTimeout((function(){r({type:"timeout",target:k})}),12e4);k.onerror=k.onload=r,document.head.appendChild(k)}return Promise.all(c)},h.m=e,h.c=u,h.d=function(e,c,n){h.o(e,c)||Object.defineProperty(e,c,{enumerable:!0,get:n})},h.r=function(e){"undefined"!==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},h.t=function(e,c){if(1&c&&(e=h(e)),8&c)return e;if(4&c&&"object"===typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(h.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&c&&"string"!=typeof e)for(var u in e)h.d(n,u,function(c){return e[c]}.bind(null,u));return n},h.n=function(e){var c=e&&e.__esModule?function(){return e["default"]}:function(){return e};return h.d(c,"a",c),c},h.o=function(e,c){return Object.prototype.hasOwnProperty.call(e,c)},h.p="/",h.oe=function(e){throw console.error(e),e};var r=window["webpackJsonp"]=window["webpackJsonp"]||[],k=r.push.bind(r);r.push=c,r=r.slice();for(var b=0;b<r.length;b++)c(r[b]);var o=k;n()})([]);</script><script src=/static/js/chunk-elementUI.b8e23f27.js></script><script src=/static/js/chunk-libs.3e9ef524.js></script><script src=/static/js/app.b5837f89.js></script></body></html>
